@@ -13,7 +13,6 @@ public class RabbitMQConfig {
     public static final String EXCHANGE_NAME = "netflixExchange";
     public static final String TOPIC_NEW_SERIE = "com.dh.newSerie";
 
-
     @Bean
     public TopicExchange appExchange() {
         return new TopicExchange(EXCHANGE_NAME);

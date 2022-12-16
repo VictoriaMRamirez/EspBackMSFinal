@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
     public static final String EXCHANGE_NAME = "netflixExchange";
-    public static final String TOPIC_NEW_MOVIE = "com.dh.newMovie";
+    public static final String TOPIC_NEW_MOVIE = "com.dh.newMovie"; // "new.product.movie"
 
     @Bean
     public TopicExchange appExchange() { return new TopicExchange(EXCHANGE_NAME); }

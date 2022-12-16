@@ -4,30 +4,18 @@ server:
 spring:
   application:
     name: api-serie
-
-#  datasource:
-#    driverClassName: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/serie
-#    username: root
-#    password: 29031999
-
   data:
     mongodb:
-      username: root
-      password: root
-      database: series
-      port: 27017
+      username: 'usr-serie'
+      password: 'pwd-serie'
+      database: 'serie'
+      port: 27016
       host: localhost
-      authentication-database: admin
-
-  jpa:
-    hibernate.ddl-auto: update
-    generate-ddl: true
-    show-sql: true
-
   zipkin:
     baseUrl: http://localhost:9411/
-
+    enabled: true
+    sender:
+      type: rabbit
   rabbitmq:
     username: guest
     password: guest

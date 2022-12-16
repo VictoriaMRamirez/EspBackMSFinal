@@ -1,14 +1,10 @@
 package com.dh.catalog.controller;
 
-import com.dh.catalog.client.MovieFeign;
-import com.dh.catalog.client.SerieFeign;
-import com.dh.catalog.service.CatalogService;
+import com.dh.catalog.service.impl.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/catalog")

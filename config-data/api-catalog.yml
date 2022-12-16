@@ -4,30 +4,18 @@ server:
 spring:
   application:
     name: api-catalog
-
   data:
     mongodb:
-      username: root
-      password: root
-      database: catalog
+      username: 'usr-catalog'
+      password: 'pwd-catalog'
+      database: 'catalog'
       port: 27017
       host: localhost
-      authentication-database: admin
-
-#  datasource:
-#    driverClassName: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/movie
-#    username: root
-#    password: 123456 #29031999
-
-  jpa:
-    hibernate.ddl-auto: update
-    generate-ddl: true
-    show-sql: true
-
   zipkin:
      baseUrl: http://localhost:9411/
-
+     enabled: true
+     sender:
+       type: rabbit
   rabbitmq:
     username: guest
     password: guest
@@ -41,25 +29,25 @@ eureka:
     serviceURL:
         defaultZone: http://localhost:8761/eureka
 
-resilience4j.retry:
-  instances:
-    retryMusic:
-      maxAttempts: 3
-      waitDuration: 10s
-      enableExponentialBackoff: true
-      exponentialBackoffMultiplier: 2
-      retryExceptions:
-        - org.springframework.web.client.HttpServerErrorException
-        - java.io.IOException
-
-resilience4j.circuitbreaker:
-  instances:
-    clientMusic:
-      registerHealthIndicator: true
-      slidingWindowSize: 10
-      permittedNumberOfCallsInHalfOpenState: 3
-      slidingWindowType: TIME_BASED
-      minimumNumberOfCalls: 20
-      waitDurationInOpenState: 50s
-      failureRateThreshold: 50
-      eventConsumerBufferSize: 10
+resilience4j:
+  circuitbreaker:
+    instances:
+      catalog:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        slidingWindowType: TIME_BASED
+        permittedNumberOfCallsInHalfOpenState: 3
+        minimumNumberOfCalls: 20
+        waitDurationInOpenState: 50s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+  retry:
+    instances:
+      catalog:
+        maxAttempts: 3
+        waitDuration: 10s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException

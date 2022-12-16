@@ -1,6 +1,6 @@
-FROM openjdk:17
-MAINTAINER VICTORIARAMIREZ
-ARG JAR_FILE=target/eureka-server.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
-EXPOSE 8761
+#FROM openjdk:17
+#MAINTAINER VICTORIARAMIREZ
+#ARG JAR_FILE=target/eureka-server.jar
+#COPY ${JAR_FILE} app.jar
+#ENTRYPOINT ["java","-jar","app.jar"]
+#EXPOSE 8761

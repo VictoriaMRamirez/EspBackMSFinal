@@ -1,13 +1,13 @@
 package com.dh.catalog.repository;
 
-import com.dh.catalog.model.SerieEntity;
+import com.dh.catalog.model.entity.Serie;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface SerieRepositoryMongo extends MongoRepository<SerieEntity, Long> {
+public interface SerieRepositoryMongo extends MongoRepository<Serie, Long> {
 
-    List<SerieEntity> findByGenre(String genre);
+    List<Serie> findByGenre(String genre);
 }

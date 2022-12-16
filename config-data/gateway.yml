@@ -10,7 +10,6 @@ spring:
       discovery:
         locator:
           enabled: true
-
       routes:
         - id: apiMovie
           uri: lb://api-movie 
@@ -23,7 +22,7 @@ spring:
         - id: apiCatalog
           uri: lb://api-catalog
           predicates:
-            - Path=/api/v1/catalog/**
+            - Path=/api/v1/catalogs/**
 
 info:
   app:

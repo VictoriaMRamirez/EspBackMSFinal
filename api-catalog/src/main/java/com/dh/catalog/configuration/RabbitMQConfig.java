@@ -35,12 +35,12 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding declareBindingSpecificNewMusic() {
+    public Binding declareBindingSpecificNewMovie() {
         return BindingBuilder.bind(newMovieQueue()).to(appExchange()).with(TOPIC_NEW_MOVIE);
     }
 
     @Bean
-    public Binding declareBindingSpecificNewPlaylist() {
+    public Binding declareBindingSpecificNewSerie() {
         return BindingBuilder.bind(newSerieQueue()).to(appExchange()).with(TOPIC_NEW_SERIE);
     }
 
