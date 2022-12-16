@@ -1,44 +1,33 @@
 package com.dh.catalog.controller;
 
-import com.dh.catalog.service.impl.CatalogService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import com.dh.catalog.model.dto.CatalogDTO;
+import com.dh.catalog.service.ICatalogService;
+import net.datafaker.Cat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/catalog")
+@RequestMapping("/api/v1/catalogs")
 public class CatalogController {
 
-	@Autowired
-	private CatalogService catalogService;
+	private ICatalogService catalogService;
 
-//	@Autowired
-//	private MovieFeign movieFeign;
-//
-//	@Autowired
-//	private SerieFeign serieFeign;
-
-	@GetMapping("/online/{popularidad}")
-	@ResponseStatus(code = HttpStatus.OK)
-	public ResponseEntity<GetSugerenciaByPopularidadResponse> getSugerenciaByPopularidadOnline(@PathVariable String popularidad) {
-		return ResponseEntity.ok(catalogService.getSugerenciaByPopularidadOnline(popularidad));
+	public CatalogController(ICatalogService catalogService) {
+		this.catalogService = catalogService;
 	}
 
-	@GetMapping("/offline/{popularidad}")
-	@ResponseStatus(code = HttpStatus.OK)
-	public ResponseEntity<GetSugerenciaByPopularidadResponse> getSugerenciaByPopularidadOffline(@PathVariable String popularidad) {
-		return ResponseEntity.ok(catalogService.getSugerenciaByPopularidadOffline(popularidad));
+	@GetMapping
+	ResponseEntity<CatalogDTO> getAll() {
+		return ResponseEntity.ok(catalogService.getAll());
 	}
 
-//	@GetMapping("/movies/{genre}")
-//	ResponseEntity<List<MovieFeign.Movie>> getMoviesGenre(@PathVariable String genre) {
-//		return ResponseEntity.ok(movieFeign.getMovieByGenre(genre));
-//	}
-//
-//	@GetMapping("/series/{genre}")
-//	ResponseEntity<List<SerieFeign.Serie>> getSeriesGenre(@PathVariable String genre) {
-//		return ResponseEntity.ok(serieFeign.getSerieByGenre(genre));
-//	}
+	@GetMapping("online/{genre}")
+	ResponseEntity<CatalogDTO> getCatalogOnline(@PathVariable String genre) throws Exception {
+		return ResponseEntity.ok(catalogService.getCatalogOnline(genre));
+	}
 
+	@GetMapping("offline/{genre}")
+	ResponseEntity<CatalogDTO> getCatalogOffline(@PathVariable String genre) {
+		return ResponseEntity.ok(catalogService.getCatalogOffline(genre));
+	}
 }
